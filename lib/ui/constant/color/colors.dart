@@ -1,10 +1,11 @@
 import 'dart:ui' show Color;
 
-class RenkPaleti {
+class NowUIColors {
   static const Color black = Color(0xFF000000);
 
-  static const Color bgcolor = Color(0xFFE5E5E5);
+  static const Color bgcolor = Color(0xFFF7FBFE);
   static const Color appbar = Color(0xFF282828);
+  static const Color anarenk = Color(0xFFF35BAC);
 
   static const Color statusbar = Color(0xFF252836);
   static const Color acikyesil = Color(0xFF0E9E58);
