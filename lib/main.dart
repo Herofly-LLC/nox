@@ -3,7 +3,6 @@
 //bu bir Doğan Oğuz projesidir.
 
 //"Eğer beni güldürmek istiyorsan, beni react native ile tehdit edeceksin aslanım"
-
 import 'package:askingucu/ui/page/dashboard/dashboard.dart';
 import 'package:askingucu/ui/page/onboard/onboard.dart';
 import 'package:flutter/material.dart';
