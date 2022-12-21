@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "772019000811",
+    "project_id": "askingucuapp",
+    "storage_bucket": "askingucuapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772019000811:android:9639db776801c936aef5ae",
+        "android_client_info": {
+          "package_name": "com.doganoguz.askingucu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772019000811-qtnv6ifbc549htd3ile7s1ch8li6dich.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOmmz_osHRakCOg5iAC8SKQGSf_iidMqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772019000811-qtnv6ifbc549htd3ile7s1ch8li6dich.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
