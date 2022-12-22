@@ -25,7 +25,7 @@ class NowUIColors {
   static const Color dashbeyaz = Color(0xffffefefe);
 
   static const Color signupbtn = Color(0xFFf5f5f5);
-  static const Color btn = Color(0xFF17A1C3);
+  static const Color btn = Color(0xFFF67DAD);
 
   static const Color anasite = Color(0xFFFFB721);
   static const Color anasit = Color(0xFF377dff);

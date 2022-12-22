@@ -37,6 +37,7 @@ class _OnboardState extends State<Onboard> {
   String _platformVersion = 'Bilinmiyor';
   String _projectVersion = '';
   String _projectCode = '';
+
   String _projectAppID = '';
   String _projectName = '';
 
@@ -120,6 +121,7 @@ class _OnboardState extends State<Onboard> {
 
   Future<void> _realDevice() async {
     print("Cihaz Bilgileri : ⤵️");
+
     ClientInformation info = await ClientInformation.fetch();
 
     print("✨\u200d " + info.deviceId); // EA625164-4XXX-XXXX-XXXXXXXXXXXX
@@ -205,7 +207,7 @@ class _OnboardState extends State<Onboard> {
                           ),
                           Text(
                             "Reach your goal at app ",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.mulish(
                                 color: NowUIColors.beyaz,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w300),
@@ -215,7 +217,7 @@ class _OnboardState extends State<Onboard> {
                           ),
                           Text(
                             "with over 100+ mind programs designed for",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.mulish(
                                 color: NowUIColors.beyaz,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w300),
@@ -225,7 +227,7 @@ class _OnboardState extends State<Onboard> {
                           ),
                           Text(
                             "results",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.mulish(
                                 color: NowUIColors.beyaz,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w300),
@@ -237,8 +239,8 @@ class _OnboardState extends State<Onboard> {
                             minWidth: 335.0,
                             height: 50.0,
                             child: FlatButton(
-                              textColor: NowUIColors.anarenk,
-                              color: NowUIColors.yesilkoyu,
+                              textColor: NowUIColors.beyaz,
+                              color: NowUIColors.btn,
                               onPressed: () {
                                 //
                               },
@@ -246,8 +248,8 @@ class _OnboardState extends State<Onboard> {
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                               child: Text(
-                                "Let's Explore 🔥\u200d",
-                                style: GoogleFonts.inter(
+                                "Başla 🔥\u200d",
+                                style: GoogleFonts.mulish(
                                   color: NowUIColors.beyaz,
                                   fontSize: 16,
                                 ),
@@ -261,7 +263,7 @@ class _OnboardState extends State<Onboard> {
                             onTap: () {},
                             child: new Text(
                               'Create Account',
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.mulish(
                                 color: NowUIColors.beyaz,
                                 fontSize: 16,
                               ),
