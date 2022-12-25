@@ -240,15 +240,13 @@ class _OnboardState extends State<Onboard> {
                             height: 50.0,
                             child: FlatButton(
                               textColor: NowUIColors.beyaz,
-                              color: NowUIColors.btn,
-                              onPressed: () {
-                                //
-                              },
+                              color: NowUIColors.morr,
+                              onPressed: () {},
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                               child: Text(
-                                "Başla 🔥\u200d",
+                                "Explore 🔥\u200d",
                                 style: GoogleFonts.mulish(
                                   color: NowUIColors.beyaz,
                                   fontSize: 16,

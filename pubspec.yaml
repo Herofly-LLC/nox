@@ -72,6 +72,7 @@ dependencies:
  
   flutter_local_notifications: ^9.0.0
   get_version: ^0.2.2
+  cherry_toast: ^1.0.6
 
   kt_drawer_menu: ^0.0.6
   client_information: ^2.0.2+2
