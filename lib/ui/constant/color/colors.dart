@@ -3,7 +3,7 @@ import 'dart:ui' show Color;
 class NowUIColors {
   static const Color black = Color(0xFF000000);
 
-  static const Color bgcolor = Color(0xFFF7FBFE);
+  static const Color bgcolor = Color(0xFF101114);
   static const Color appbar = Color(0xFF282828);
   static const Color anarenk = Color(0xFFF35BAC);
 
