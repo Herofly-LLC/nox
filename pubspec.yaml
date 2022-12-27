@@ -116,6 +116,7 @@ dependencies:
   flutter_animate: ^2.0.0
   neon_widgets: ^0.1.2
   animated_splash_screen: ^1.3.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -142,6 +143,7 @@ flutter:
   assets:
     - assets/img/logo.svg
     - assets/img/logo.png
+    - assets/img/go.png
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

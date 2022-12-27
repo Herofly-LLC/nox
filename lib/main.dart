@@ -4,7 +4,7 @@
 
 //"Eğer beni güldürmek istiyorsan, beni react native ile tehdit edeceksin aslanım"
 import 'package:askingucu/ui/page/dashboard/dashboard.dart';
-import 'package:askingucu/ui/page/onboard/onboard.dart';
+import 'package:askingucu/ui/page/onboard/one.dart';
 import 'package:askingucu/ui/page/splash/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    main();
   }
 
   @override
@@ -44,7 +45,7 @@ class _MyAppState extends State<MyApp> {
         initialRoute: '/splash',
         routes: <String, WidgetBuilder>{
           '/splash': (BuildContext context) => new Splash(),
-          '/onboard': (BuildContext context) => new Onboard(),
+          '/onboard': (BuildContext context) => new OnboardOne(),
           '/dashboard': (BuildContext context) => new Dashboard(),
         });
   }

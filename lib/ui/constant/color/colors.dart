@@ -14,11 +14,12 @@ class NowUIColors {
   static const Color mavi = Color(0xFF4285F5);
 
   static const Color mavibtn = Color(0xffff215bf0);
+  static const Color btngri = Color(0xff2B2C33);
   static const Color sari = Color(0xFFFCBD03);
 
   static const Color trncu = Color(0xFFFCBD03);
   static const Color textField = Color(0xFFEEEEEE);
-  static const Color yaziRenk = Color(0xFF939393);
+  static const Color yaziRenk = Color(0xFFB3B0B8);
   static const Color card = Color(0xFF282828);
   static const Color beyaz = Color(0xFFFFFFFF);
 
