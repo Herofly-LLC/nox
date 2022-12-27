@@ -10,7 +10,7 @@ class NowUIColors {
   static const Color statusbar = Color(0xFF252836);
   static const Color acikyesil = Color(0xFF0E9E58);
   static const Color yesilkoyu = Color(0xFF0E9E58);
-  static const Color morr = Color(0xFF8B00FF);
+  static const Color mor = Color(0xFF8B00FF);
   static const Color mavi = Color(0xFF4285F5);
 
   static const Color mavibtn = Color(0xffff215bf0);

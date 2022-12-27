@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "772019000811",
-    "project_id": "askingucuapp",
-    "storage_bucket": "askingucuapp.appspot.com"
+    "project_number": "931803510926",
+    "project_id": "nox-app-fecd0",
+    "storage_bucket": "nox-app-fecd0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:772019000811:android:9639db776801c936aef5ae",
+        "mobilesdk_app_id": "1:931803510926:android:faa2c3d70d5c287f20f1df",
         "android_client_info": {
-          "package_name": "com.doganoguz.askingucu"
+          "package_name": "app.doganoguz.nox"
         }
       },
       "oauth_client": [
         {
-          "client_id": "772019000811-qtnv6ifbc549htd3ile7s1ch8li6dich.apps.googleusercontent.com",
+          "client_id": "931803510926-or5182lmtuijpslqrlit46gdust2gp8f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDOmmz_osHRakCOg5iAC8SKQGSf_iidMqk"
+          "current_key": "AIzaSyBQI6dti2ZoqQzCslZBMZtRXZk1yHpy_uc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "772019000811-qtnv6ifbc549htd3ile7s1ch8li6dich.apps.googleusercontent.com",
+              "client_id": "931803510926-or5182lmtuijpslqrlit46gdust2gp8f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

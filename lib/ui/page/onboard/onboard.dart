@@ -240,7 +240,7 @@ class _OnboardState extends State<Onboard> {
                             height: 50.0,
                             child: FlatButton(
                               textColor: NowUIColors.beyaz,
-                              color: NowUIColors.morr,
+                              color: NowUIColors.mor,
                               onPressed: () {},
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0),

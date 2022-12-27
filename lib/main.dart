@@ -5,6 +5,7 @@
 //"Eğer beni güldürmek istiyorsan, beni react native ile tehdit edeceksin aslanım"
 import 'package:askingucu/ui/page/dashboard/dashboard.dart';
 import 'package:askingucu/ui/page/onboard/onboard.dart';
+import 'package:askingucu/ui/page/splash/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -38,10 +39,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Aşkın Gücü',
+        title: 'Nox',
         debugShowCheckedModeBanner: false,
-        initialRoute: '/onboard',
+        initialRoute: '/splash',
         routes: <String, WidgetBuilder>{
+          '/splash': (BuildContext context) => new Splash(),
           '/onboard': (BuildContext context) => new Onboard(),
           '/dashboard': (BuildContext context) => new Dashboard(),
         });
