@@ -180,7 +180,7 @@ class _OnboardOneState extends State<OnboardOne> {
                           colors: [Colors.transparent, NowUIColors.bgcolor])
                       .createShader(bounds);
                 },
-                blendMode: BlendMode.darken,
+                blendMode: BlendMode.dstOut,
                 child: Container(
                     width: 400,
                     height: 500,

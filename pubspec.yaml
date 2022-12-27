@@ -143,6 +143,7 @@ flutter:
   assets:
     - assets/img/logo.svg
     - assets/img/logo.png
+    - assets/img/riot.png
     - assets/img/go.png
     
 

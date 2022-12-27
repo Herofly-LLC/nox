@@ -3,6 +3,7 @@ import 'dart:core';
 
 import 'package:askingucu/core/service/notification.dart';
 import 'package:askingucu/ui/constant/color/colors.dart';
+import 'package:askingucu/ui/page/auth/login/login.dart';
 import 'package:client_information/client_information.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -179,18 +180,18 @@ class _OnboardThreeState extends State<OnboardThree> {
                           colors: [Colors.transparent, NowUIColors.bgcolor])
                       .createShader(bounds);
                 },
-                blendMode: BlendMode.darken,
+                blendMode: BlendMode.dstOut,
                 child: Container(
                     height: 500,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
-                            'https://images.unsplash.com/photo-1626240130051-68871c71de47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80'),
+                            'https://images.unsplash.com/photo-1636489948870-058e57b5f7d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2944&q=80'),
                         fit: BoxFit.cover,
                       ),
                     ))),
             SizedBox(
-              height: 45,
+              height: 35,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -248,24 +249,30 @@ class _OnboardThreeState extends State<OnboardThree> {
               ],
             ),
             SizedBox(
-              height: 25,
+              height: 55,
             ),
             ButtonTheme(
               height: 56.0,
-              minWidth: 56,
+              minWidth: 335,
               child: FlatButton(
                 textColor: NowUIColors.beyaz,
-                color: NowUIColors.btngri,
-                onPressed: () async {},
+                color: NowUIColors.mor,
+                onPressed: () async {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.rightToLeftWithFade,
+                          child: Login()));
+                },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Text(
-                  ">",
-                  style: GoogleFonts.montserrat(
+                  "Keşfet 🔥",
+                  style: GoogleFonts.dmSans(
                       color: NowUIColors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600),
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
