@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'dart:core';
 
+import 'package:askingucu/core/service/auth.dart';
 import 'package:askingucu/core/service/notification.dart';
 import 'package:askingucu/ui/constant/color/colors.dart';
+import 'package:askingucu/ui/page/auth/signup/sign_up.dart';
+import 'package:askingucu/ui/page/dashboard/dashboard.dart';
 import 'package:client_information/client_information.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -22,6 +25,9 @@ import 'package:http/http.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import 'package:page_animation_transition/animations/bottom_to_top_faded_transition.dart';
 import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:page_transition/page_transition.dart';
@@ -42,6 +48,8 @@ Future<void> main() async {
 }
 
 class _SignInState extends State<SignIn> {
+  AuthService _authService = AuthService();
+
   TextEditingController email = TextEditingController();
   TextEditingController parola = TextEditingController();
 
@@ -103,7 +111,7 @@ class _SignInState extends State<SignIn> {
                 },
                 blendMode: BlendMode.dstOut,
                 child: Container(
-                    height: 320,
+                    height: 270,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
@@ -133,7 +141,7 @@ class _SignInState extends State<SignIn> {
                   width: 30,
                 ),
                 Text(
-                  "E-Mail / Kul.Adı",
+                  "E-Mail / Kullanıcı Adı",
                   style: GoogleFonts.dmSans(
                       color: NowUIColors.white,
                       fontSize: 14,
@@ -142,7 +150,7 @@ class _SignInState extends State<SignIn> {
               ],
             ),
             SizedBox(
-              height: 4,
+              height: 5,
             ),
             Container(
               width: 335,
@@ -169,7 +177,7 @@ class _SignInState extends State<SignIn> {
                     contentPadding: const EdgeInsets.all(15.0),
                     prefixIcon: const Icon(
                       Icons.mail,
-                      color: NowUIColors.beyaz,
+                      color: NowUIColors.yaziRenk,
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(color: NowUIColors.beyaz),
@@ -203,7 +211,7 @@ class _SignInState extends State<SignIn> {
               ],
             ),
             SizedBox(
-              height: 4,
+              height: 5,
             ),
             Container(
               width: 335,
@@ -227,13 +235,13 @@ class _SignInState extends State<SignIn> {
                       },
                       child: Icon(
                         _obscureText ? Icons.visibility_off : Icons.visibility,
-                        color: NowUIColors.beyaz,
+                        color: NowUIColors.yaziRenk,
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(15.0),
                     prefixIcon: const Icon(
                       Icons.lock,
-                      color: NowUIColors.beyaz,
+                      color: NowUIColors.yaziRenk,
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(color: NowUIColors.beyaz),
@@ -259,27 +267,8 @@ class _SignInState extends State<SignIn> {
                 },
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                SizedBox(
-                  height: 27,
-                ),
-                Text(
-                  "Şifre mi Unuttum?",
-                  style: GoogleFonts.dmSans(
-                      color: Colors.white24,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-              ],
-            ),
             SizedBox(
-              height: 70,
+              height: 75,
             ),
             ButtonTheme(
               height: 56.0,
@@ -287,7 +276,10 @@ class _SignInState extends State<SignIn> {
               child: FlatButton(
                 textColor: NowUIColors.beyaz,
                 color: NowUIColors.mor,
-                onPressed: () async {},
+                onPressed: () async {
+                  _karakterUyarisi();
+                  _girisYap();
+                },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                 ),
@@ -300,9 +292,143 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 15,
+            ),
+            ButtonTheme(
+              height: 56.0,
+              minWidth: 335,
+              child: FlatButton(
+                textColor: NowUIColors.mor,
+                color: NowUIColors.beyaz,
+                onPressed: () async {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.rightToLeftWithFade,
+                          child: SignUp()));
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4.0),
+                ),
+                child: Text(
+                  "Hesap Oluştur",
+                  style: GoogleFonts.dmSans(
+                      color: NowUIColors.mor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ],
         )),
       ),
     );
+  }
+
+//girisYap fonksiyonu içinde tüm işlemleri yaptırıp saplıyoruz!
+  void _girisYap() async {
+    await _authService.signIn(email.text, parola.text).then((value) {
+      return Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Dashboard()));
+    }).catchError((dynamic error) {
+      if (error.code.contains('invalid-email')) {
+        MotionToast.warning(
+          position: MotionToastPosition.top,
+          animationType: AnimationType.fromTop,
+          title: Text(
+            "Oops!",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          description: Text(
+            "E-Mail Bulunamadı!",
+            style: TextStyle(fontSize: 12),
+          ),
+          onClose: () {},
+        ).show(context);
+      }
+      if (error.code.contains('user-not-found')) {
+        MotionToast.warning(
+          position: MotionToastPosition.top,
+          animationType: AnimationType.fromTop,
+          title: Text(
+            "Oops!",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          description: Text(
+            "Kullanıcı Bulunamadı!",
+            style: GoogleFonts.dmSans(
+              color: NowUIColors.bgcolor,
+              fontSize: 12,
+            ),
+          ),
+          onClose: () {},
+        ).show(context);
+      }
+      if (error.code.contains('wrong-password')) {
+        MotionToast.warning(
+          position: MotionToastPosition.top,
+          animationType: AnimationType.fromTop,
+          title: Text(
+            "Oops!",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          description: Text(
+            "Parola Hatalı!",
+            style: GoogleFonts.dmSans(
+              color: NowUIColors.bgcolor,
+              fontSize: 12,
+            ),
+          ),
+          onClose: () {},
+        ).show(context);
+      }
+    });
+  }
+
+  void _karakterUyarisi() {
+    if (email.text == '') {
+      _emailUyarisi();
+    } else if (parola.text == '') {
+      _parolaUyarisi();
+    }
+  }
+
+  void _emailUyarisi() {
+    MotionToast.warning(
+      position: MotionToastPosition.top,
+      animationType: AnimationType.fromTop,
+      title: Text(
+        "Oops!",
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      description: Text(
+        "E-Mail / Kullanıcı Adı Boş Olamaz!",
+        style: GoogleFonts.dmSans(
+          color: NowUIColors.bgcolor,
+          fontSize: 12,
+        ),
+      ),
+      onClose: () {},
+    ).show(context);
+  }
+
+  void _parolaUyarisi() {
+    MotionToast.warning(
+      position: MotionToastPosition.top,
+      animationType: AnimationType.fromTop,
+      title: Text(
+        "Oops!",
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      description: Text(
+        "Parola Alanı Boş Olamaz!",
+        style: GoogleFonts.dmSans(
+          color: NowUIColors.bgcolor,
+          fontSize: 12,
+        ),
+      ),
+      onClose: () {},
+    ).show(context);
   }
 }
