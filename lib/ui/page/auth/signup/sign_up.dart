@@ -118,7 +118,7 @@ class _SignUpState extends State<SignUp> {
                 },
                 blendMode: BlendMode.dstOut,
                 child: Container(
-                    height: 250,
+                    height: 230,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
@@ -138,7 +138,7 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
             SizedBox(
-              height: 25,
+              height: 15,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -299,10 +299,6 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(15.0),
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: NowUIColors.yaziRenk,
-                    ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(color: NowUIColors.beyaz),
                       borderRadius: BorderRadius.circular(4),
@@ -377,10 +373,6 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(15.0),
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: NowUIColors.yaziRenk,
-                    ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(color: NowUIColors.beyaz),
                       borderRadius: BorderRadius.circular(4),
@@ -406,7 +398,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 25,
             ),
             ButtonTheme(
               height: 56.0,
@@ -429,34 +421,6 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 15,
-            ),
-            ButtonTheme(
-              height: 56.0,
-              minWidth: 335,
-              child: FlatButton(
-                textColor: NowUIColors.mor,
-                color: NowUIColors.beyaz,
-                onPressed: () async {
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                          type: PageTransitionType.rightToLeftWithFade,
-                          child: SignIn()));
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-                child: Text(
-                  "Giriş Yap",
-                  style: GoogleFonts.dmSans(
-                      color: NowUIColors.mor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
           ],
         )),
       ),
@@ -464,19 +428,6 @@ class _SignUpState extends State<SignUp> {
   }
 
   void _kaydol() async {
-    _authService
-        .createPerson(_emailController.text.toString(), _kulAdiController.text,
-            _passwordController.text, _passwordTekrarController.text)
-        .then((value) {
-      return Navigator.push(
-          context,
-          PageTransition(
-              type: PageTransitionType.leftToRight, child: SignIn()));
-    }).catchError((dynamic error) {});
-    ;
-  }
-
-  void _karakterUyarisi() {
     if (_emailController.text == '') {
       _emailUyarisi();
     } else if (_kulAdiController.text == '') {
@@ -484,6 +435,50 @@ class _SignUpState extends State<SignUp> {
     } else if (_passwordController.text == '') {
       _parolaUyarisi();
     }
+    _authService
+        .createPerson(_kulAdiController.text, _emailController.text,
+            _passwordController.text, _passwordTekrarController.text)
+        .then((value) {
+      _kayitBasariliUyarisi();
+      return Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.leftToRight, child: SignIn()));
+    }).catchError((dynamic error) {
+      if (error.code.contains('success')) {
+        MotionToast.success(
+          position: MotionToastPosition.top,
+          animationType: AnimationType.fromTop,
+          title: Text(
+            "Aramıza Hoşgeldin :)",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          description: Text(
+            "Kayıt işlemi başarılı",
+            style: GoogleFonts.dmSans(
+              color: NowUIColors.bgcolor,
+              fontSize: 12,
+            ),
+          ),
+          onClose: () {},
+        ).show(context);
+      }
+      if (error.code.contains('email-already-in-use')) {
+        MotionToast.warning(
+          position: MotionToastPosition.top,
+          animationType: AnimationType.fromTop,
+          title: Text(
+            "Oops!",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          description: Text(
+            "E-posta adresi zaten başka bir hesap tarafından kullanılıyor.",
+            style: TextStyle(fontSize: 12),
+          ),
+          onClose: () {},
+        ).show(context);
+      }
+    });
   }
 
   void _emailUyarisi() {
@@ -542,4 +537,6 @@ class _SignUpState extends State<SignUp> {
       onClose: () {},
     ).show(context);
   }
+
+  void _kayitBasariliUyarisi() {}
 }

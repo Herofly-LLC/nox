@@ -175,10 +175,6 @@ class _SignInState extends State<SignIn> {
                     fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(15.0),
-                    prefixIcon: const Icon(
-                      Icons.mail,
-                      color: NowUIColors.yaziRenk,
-                    ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(color: NowUIColors.beyaz),
                       borderRadius: BorderRadius.circular(4),
@@ -239,10 +235,6 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(15.0),
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: NowUIColors.yaziRenk,
-                    ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(color: NowUIColors.beyaz),
                       borderRadius: BorderRadius.circular(4),
@@ -268,7 +260,7 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             SizedBox(
-              height: 75,
+              height: 55,
             ),
             ButtonTheme(
               height: 56.0,

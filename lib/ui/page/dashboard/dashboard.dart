@@ -62,7 +62,7 @@ class _DashboardState extends State<Dashboard> {
         childDecoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: NowUIColors.anasite,
+              color: NowUIColors.mor,
               blurRadius: 20.0,
               spreadRadius: 5.0,
               offset: Offset(-3.0, 0.0),
@@ -74,14 +74,14 @@ class _DashboardState extends State<Dashboard> {
           child: Container(
             child: ListTileTheme(
               textColor: NowUIColors.black,
-              iconColor: NowUIColors.anasite,
+              iconColor: NowUIColors.beyaz,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: AvatarGlow(
-                      glowColor: NowUIColors.anasite,
+                      glowColor: NowUIColors.mor,
                       endRadius: 70.0,
                       duration: Duration(milliseconds: 3000),
                       repeat: true,
@@ -92,9 +92,11 @@ class _DashboardState extends State<Dashboard> {
                         elevation: 8.0,
                         shape: CircleBorder(),
                         child: CircleAvatar(
-                          backgroundColor: NowUIColors.appbar,
+                          backgroundColor: NowUIColors.bgcolor,
                           child: Image.asset(
-                            'assets/images/lg.png',
+                            'assets/img/logo.png',
+                            height: 40,
+                            width: 40,
                             fit: BoxFit.fill,
                           ),
                           radius: 40.0,
@@ -218,9 +220,9 @@ class _DashboardState extends State<Dashboard> {
             appBar: AppBar(
               elevation: 0.0,
               titleSpacing: 10.0,
-              backgroundColor: NowUIColors.appbar,
+              backgroundColor: NowUIColors.bgcolor,
               leading: new IconButton(
-                icon: new Icon(Iconsax.menu_1, color: NowUIColors.trncu),
+                icon: new Icon(Iconsax.menu_1, color: NowUIColors.beyaz),
                 onPressed: () {
                   _handleMenuButtonPressed();
                 },
@@ -234,9 +236,9 @@ class _DashboardState extends State<Dashboard> {
               ),
               centerTitle: true,
               title: Image.asset(
-                "assets/images/lg.png",
-                height: 110,
-                width: 110,
+                "assets/img/logo.png",
+                height: 40,
+                width: 40,
               ),
               actions: <Widget>[],
             ),

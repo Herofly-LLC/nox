@@ -4,6 +4,7 @@ import 'dart:core';
 import 'package:askingucu/core/service/notification.dart';
 import 'package:askingucu/ui/constant/color/colors.dart';
 import 'package:askingucu/ui/page/auth/login/sign_in.dart';
+import 'package:askingucu/ui/page/tools/smsBomber/bomber.dart';
 import 'package:client_information/client_information.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -349,7 +350,11 @@ class _LoginState extends State<Login> {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    print('atlayamazsın kardeşmk ');
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.rightToLeftWithFade,
+                            child: Bomber()));
                   },
                   child: Text(
                     "Atla",
