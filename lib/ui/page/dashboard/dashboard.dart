@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:askingucu/core/service/auth.dart';
 import 'package:askingucu/ui/constant/color/colors.dart';
+import 'package:askingucu/ui/page/auth/login/sign_in.dart';
 
 ///muza basarsın ayağın kayar, bizi peşlersen hayatın kayar!
 
@@ -43,10 +45,34 @@ bool _isLoading = false;
 
 final _advancedDrawerController = AdvancedDrawerController();
 
+AuthService _authService = AuthService();
+
 class _DashboardState extends State<Dashboard> {
+  void cikisYap() async {
+    await _authService.signOut();
+    Navigator.push(
+        context,
+        PageTransition(
+            type: PageTransitionType.rightToLeftWithFade, child: SignIn()));
+  }
+
   @override
   void initState() {
     super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("başarılı");
+      setState(() {});
+    });
+
+    firebaseToken();
+  }
+
+  void firebaseToken() async {
+    FirebaseMessaging.instance.getToken().then((tken) {
+      final tokenFirebase = tken.toString();
+
+      print("Firebase Token = " + tokenFirebase);
+    });
   }
 
   @override
@@ -185,31 +211,18 @@ class _DashboardState extends State<Dashboard> {
                             fontSize: 14,
                             fontWeight: FontWeight.w600)),
                   ),
-                  ExpansionTile(
+                  ListTile(
+                    leading: Icon(Iconsax.support),
+                    onTap: () {
+                      cikisYap();
+                    },
                     title: Text(
-                      'Support',
+                      'Çıkış Yap',
                       style: GoogleFonts.montserrat(
                           color: NowUIColors.trncu,
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
-                    trailing: Icon(
-                      Icons.arrow_drop_down,
-                      color: NowUIColors.trncu,
-                    ),
-                    children: <Widget>[
-                      ListTile(
-                        leading: Icon(Iconsax.support),
-                        onTap: () {},
-                        title: Text(
-                          'info@upperapp.app',
-                          style: GoogleFonts.montserrat(
-                              color: NowUIColors.trncu,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),

@@ -140,21 +140,7 @@ class _OnboardTwoState extends State<OnboardTwo> {
 
   @override
   void initState() {
-    Firebase.initializeApp().whenComplete(() {
-      print("başarılı");
-      setState(() {});
-    });
-
-    firebaseToken();
     super.initState();
-  }
-
-  void firebaseToken() async {
-    FirebaseMessaging.instance.getToken().then((tken) {
-      final tokenFirebase = tken.toString();
-
-      print("Firebase Token = " + tokenFirebase);
-    });
   }
 
   @override

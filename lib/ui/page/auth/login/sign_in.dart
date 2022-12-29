@@ -321,7 +321,16 @@ class _SignInState extends State<SignIn> {
 //girisYap fonksiyonu içinde tüm işlemleri yaptırıp saplıyoruz!
   void _girisYap() async {
     await _authService.signIn(email.text, parola.text).then((value) {
-      return Navigator.push(
+      FirebaseMessaging.instance.getToken().then((tken) async {
+        final tokenFirebase = tken.toString();
+
+        print("Firebase Token = " + tokenFirebase);
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        String token = tokenFirebase;
+        pref.setString('token', token);
+      });
+
+      Navigator.push(
           context, MaterialPageRoute(builder: (context) => Dashboard()));
     }).catchError((dynamic error) {
       if (error.code.contains('invalid-email')) {
