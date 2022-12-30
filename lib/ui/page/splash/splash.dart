@@ -30,6 +30,9 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   var tok;
 
   void _initPlatformState() async {
+    if (mounted) {
+      setState(() {});
+    }
     Firebase.initializeApp().whenComplete(() {
       setState(() {});
     });
@@ -90,7 +93,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(' assets/img/logo.png',
+            Image.asset('assets/img/logo.png',
                 height: 90, width: 90, color: NowUIColors.beyaz),
             const SizedBox(
               height: 25,

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:askingucu/core/model/haber_model.dart';
 import 'package:askingucu/core/service/auth.dart';
+import 'package:askingucu/core/utils/api.dart';
 import 'package:askingucu/ui/constant/color/colors.dart';
 import 'package:askingucu/ui/page/auth/login/sign_in.dart';
 
@@ -44,12 +46,33 @@ final _formKey = GlobalKey<FormState>();
 bool _isLoading = false;
 
 final _advancedDrawerController = AdvancedDrawerController();
+var tok;
 
 AuthService _authService = AuthService();
 
 class _DashboardState extends State<Dashboard> {
+  List<HaberModel> newsList = [];
+
+  void getTech(tag) async {
+    NewsService.getTech(tag).then((data) {
+      Map resultBody = json.decode(data.body);
+      if (resultBody['success'] == true) {
+        setState(() {
+          Iterable result = resultBody['result'];
+          newsList = result.map((newsList) => HaberModel(newsList)).toList();
+        });
+      } else {
+        SnackBar(content: Text("Hay aksi bir sorun oluştu!"));
+      }
+      print(resultBody);
+    });
+  }
+
   void cikisYap() async {
     await _authService.signOut();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    tok = prefs.clear();
+    print('token silindi hadi tekrar gir köpekkkkk');
     Navigator.push(
         context,
         PageTransition(
@@ -65,6 +88,7 @@ class _DashboardState extends State<Dashboard> {
     });
 
     firebaseToken();
+    getTech(tag);
   }
 
   void firebaseToken() async {
@@ -132,20 +156,6 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   ListTile(
                     onTap: () {},
-                    leading: Icon(Iconsax.user_add),
-                    title: Text(
-                      "Register",
-                      style: GoogleFonts.montserrat(
-                          color: NowUIColors.trncu,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.white70,
-                  ),
-                  ListTile(
-                    onTap: () {},
                     leading: Icon(Iconsax.setting),
                     title: Text(
                       "Settings",
@@ -160,9 +170,9 @@ class _DashboardState extends State<Dashboard> {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => Dashboard()));
                     },
-                    leading: Icon(Iconsax.notification),
+                    leading: Icon(Iconsax.code),
                     title: Text(
-                      'Signals',
+                      'Tools',
                       style: GoogleFonts.montserrat(
                           color: NowUIColors.trncu,
                           fontSize: 14,
@@ -212,7 +222,7 @@ class _DashboardState extends State<Dashboard> {
                             fontWeight: FontWeight.w600)),
                   ),
                   ListTile(
-                    leading: Icon(Iconsax.support),
+                    leading: Icon(Iconsax.moon),
                     onTap: () {
                       cikisYap();
                     },
@@ -257,14 +267,47 @@ class _DashboardState extends State<Dashboard> {
             ),
             backgroundColor: NowUIColors.bgcolor,
             body: SingleChildScrollView(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(20),
               child: Form(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Gündem",
+                          style: GoogleFonts.dmSans(
+                              color: NowUIColors.beyaz,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                     SizedBox(
-                      height: 25,
+                      height: 15,
+                    ),
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (_, int index) {
+                          return GestureDetector(
+                            //tile ontap
+                            onTap: () {},
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                NewsTileStyle(
+                                    name: newsList[index].name,
+                                    url: newsList[index].url,
+                                    description: newsList[index].description),
+                              ],
+                            ),
+                          );
+                        },
+                        childCount: newsList.length,
+                      ),
                     ),
                   ],
                 ),
@@ -278,5 +321,71 @@ class _DashboardState extends State<Dashboard> {
 
   void _hideMenu() {
     _advancedDrawerController.hideDrawer();
+  }
+}
+
+class NewsTileStyle extends StatelessWidget {
+  final String name, url, description;
+  const NewsTileStyle(
+      {Key? key,
+      required this.name,
+      required this.url,
+      required this.description})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 15.0, left: 20, right: 20),
+      padding: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+          color: NowUIColors.statusbar,
+          borderRadius: BorderRadius.circular(10.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 2.0,
+            ),
+          ]),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(6.0),
+                child: Text(
+                  name,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 13.0,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Container(
+            padding: EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              color: NowUIColors.acikyesil,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            child: Text(
+              description,
+              style: TextStyle(
+                color: NowUIColors.card,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
