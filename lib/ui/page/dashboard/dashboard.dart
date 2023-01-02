@@ -6,6 +6,7 @@ import 'package:askingucu/core/service/auth.dart';
 import 'package:askingucu/core/utils/api.dart';
 import 'package:askingucu/ui/constant/color/colors.dart';
 import 'package:askingucu/ui/page/auth/login/sign_in.dart';
+import 'package:askingucu/ui/page/tools/home/tools_home.dart';
 
 ///muza basarsın ayağın kayar, bizi peşlersen hayatın kayar!
 
@@ -86,6 +87,7 @@ class _DashboardState extends State<Dashboard> {
       print("başarılı");
       setState(() {});
     });
+    _hideMenu();
 
     firebaseToken();
     getTech(tag);
@@ -155,20 +157,9 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: Icon(Iconsax.setting),
-                    title: Text(
-                      "Settings",
-                      style: GoogleFonts.montserrat(
-                          color: NowUIColors.trncu,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  ListTile(
                     onTap: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Dashboard()));
+                          MaterialPageRoute(builder: (context) => ToolsHome()));
                     },
                     leading: Icon(Iconsax.code),
                     title: Text(
@@ -263,15 +254,7 @@ class _DashboardState extends State<Dashboard> {
               height: 40,
               width: 40,
             ),
-            actions: <Widget>[
-              Switch(
-                value: isSwitched,
-                inactiveThumbColor: NowUIColors.beyaz,
-                onChanged: (bool value) => setState(() => isSwitched = value),
-                activeTrackColor: NowUIColors.mor,
-                activeColor: NowUIColors.mor,
-              ),
-            ],
+            actions: <Widget>[],
           ),
           backgroundColor: NowUIColors.bgcolor,
           body: RefreshIndicator(
@@ -281,7 +264,7 @@ class _DashboardState extends State<Dashboard> {
               });
               return await Future.delayed(Duration(seconds: 1));
             },
-            edgeOffset: 100,
+            edgeOffset: 25,
             child: CustomScrollView(
               physics: BouncingScrollPhysics(),
               slivers: <Widget>[
@@ -299,7 +282,8 @@ class _DashboardState extends State<Dashboard> {
                             NewsTileStyle(
                                 name: newsList[index].name,
                                 url: newsList[index].url,
-                                description: newsList[index].description),
+                                description: newsList[index].description,
+                                image: newsList[index].urlToImage),
                           ],
                         ),
                       );
@@ -323,56 +307,82 @@ class _DashboardState extends State<Dashboard> {
 }
 
 class NewsTileStyle extends StatelessWidget {
-  final String name, url, description;
+  final String name, url, description, image;
   const NewsTileStyle(
       {Key? key,
       required this.name,
       required this.url,
-      required this.description})
+      required this.description,
+      required this.image})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 15.0, left: 20, right: 20),
-      padding: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
           color: NowUIColors.bgcolor,
           borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 2.0,
-            ),
-          ]),
+          boxShadow: []),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(6.0),
-                child: Text(
-                  name,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.dmSans(
-                    color: NowUIColors.white,
-                    fontSize: 13,
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: new InkWell(
+              onTap: () {},
+              child: Container(
+                height: 165,
+                width: 490,
+                decoration: BoxDecoration(
+                  color: NowUIColors.mor,
+                  borderRadius: BorderRadius.circular(15.0),
+                  image: DecorationImage(
+                    colorFilter: new ColorFilter.mode(
+                        Colors.black.withOpacity(0.8), BlendMode.dstATop),
+                    image: NetworkImage(image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(top: 68.0, left: 149, bottom: 20),
+                  child: Wrap(
+                    spacing: 30,
+                    children: <Widget>[],
                   ),
                 ),
               ),
-            ],
+            ),
           ),
           SizedBox(
-            height: 8,
+            height: 4,
           ),
           Container(
-            padding: EdgeInsets.all(6.0),
+            padding: EdgeInsets.all(12.0),
+            decoration: BoxDecoration(
+              color: NowUIColors.statusbar,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Text(
+              name,
+              style: GoogleFonts.dmSans(
+                  color: NowUIColors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: 3,
+          ),
+          Container(
+            padding: EdgeInsets.all(12.0),
             decoration: BoxDecoration(
               color: NowUIColors.mor,
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: Text(
               description,
