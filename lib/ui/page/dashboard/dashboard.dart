@@ -44,7 +44,7 @@ class Dashboard extends StatefulWidget {
 final _formKey = GlobalKey<FormState>();
 
 bool _isLoading = false;
-
+bool isSwitched = false;
 final _advancedDrawerController = AdvancedDrawerController();
 var tok;
 
@@ -64,7 +64,7 @@ class _DashboardState extends State<Dashboard> {
       } else {
         SnackBar(content: Text("Hay aksi bir sorun oluştu!"));
       }
-      print(resultBody);
+      print('Haber Buradaaaa babaaaaaaaaaaaa: ' + resultBody.toString());
     });
   }
 
@@ -240,79 +240,77 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
         child: Scaffold(
-            appBar: AppBar(
-              elevation: 0.0,
-              titleSpacing: 10.0,
-              backgroundColor: NowUIColors.bgcolor,
-              leading: new IconButton(
-                icon: new Icon(Iconsax.menu_1, color: NowUIColors.beyaz),
-                onPressed: () {
-                  _handleMenuButtonPressed();
-                },
-              ),
-              toolbarHeight: 60.5,
-              toolbarOpacity: 0.7,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(35),
-                    bottomLeft: Radius.circular(35)),
-              ),
-              centerTitle: true,
-              title: Image.asset(
-                "assets/img/logo.png",
-                height: 40,
-                width: 40,
-              ),
-              actions: <Widget>[],
-            ),
+          appBar: AppBar(
+            elevation: 0.0,
+            titleSpacing: 10.0,
             backgroundColor: NowUIColors.bgcolor,
-            body: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Form(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          "Gündem",
-                          style: GoogleFonts.dmSans(
-                              color: NowUIColors.beyaz,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (_, int index) {
-                          return GestureDetector(
-                            //tile ontap
-                            onTap: () {},
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                NewsTileStyle(
-                                    name: newsList[index].name,
-                                    url: newsList[index].url,
-                                    description: newsList[index].description),
-                              ],
-                            ),
-                          );
-                        },
-                        childCount: newsList.length,
-                      ),
-                    ),
-                  ],
-                ),
+            leading: new IconButton(
+              icon: new Icon(Iconsax.menu_1, color: NowUIColors.beyaz),
+              onPressed: () {
+                _handleMenuButtonPressed();
+              },
+            ),
+            toolbarHeight: 60.5,
+            toolbarOpacity: 0.7,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(35),
+                  bottomLeft: Radius.circular(35)),
+            ),
+            centerTitle: true,
+            title: Image.asset(
+              "assets/img/logo.png",
+              height: 40,
+              width: 40,
+            ),
+            actions: <Widget>[
+              Switch(
+                value: isSwitched,
+                inactiveThumbColor: NowUIColors.beyaz,
+                onChanged: (bool value) => setState(() => isSwitched = value),
+                activeTrackColor: NowUIColors.mor,
+                activeColor: NowUIColors.mor,
               ),
-            )));
+            ],
+          ),
+          backgroundColor: NowUIColors.bgcolor,
+          body: RefreshIndicator(
+            onRefresh: () async {
+              setState(() {
+                getTech(tag);
+              });
+              return await Future.delayed(Duration(seconds: 1));
+            },
+            edgeOffset: 100,
+            child: CustomScrollView(
+              physics: BouncingScrollPhysics(),
+              slivers: <Widget>[
+                //category picker slider
+
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (_, int index) {
+                      return GestureDetector(
+                        //tile ontap
+                        onTap: () {},
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            NewsTileStyle(
+                                name: newsList[index].name,
+                                url: newsList[index].url,
+                                description: newsList[index].description),
+                          ],
+                        ),
+                      );
+                    },
+                    childCount: newsList.length,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 
   void _handleMenuButtonPressed() {
@@ -339,7 +337,7 @@ class NewsTileStyle extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15.0, left: 20, right: 20),
       padding: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
-          color: NowUIColors.statusbar,
+          color: NowUIColors.bgcolor,
           borderRadius: BorderRadius.circular(10.0),
           boxShadow: [
             BoxShadow(
@@ -359,10 +357,9 @@ class NewsTileStyle extends StatelessWidget {
                 child: Text(
                   name,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 13.0,
+                  style: GoogleFonts.dmSans(
+                    color: NowUIColors.white,
+                    fontSize: 13,
                   ),
                 ),
               ),
@@ -374,13 +371,14 @@ class NewsTileStyle extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(6.0),
             decoration: BoxDecoration(
-              color: NowUIColors.acikyesil,
-              borderRadius: BorderRadius.circular(30.0),
+              color: NowUIColors.mor,
+              borderRadius: BorderRadius.circular(10.0),
             ),
             child: Text(
               description,
-              style: TextStyle(
-                color: NowUIColors.card,
+              style: GoogleFonts.dmSans(
+                color: NowUIColors.white,
+                fontSize: 13,
               ),
             ),
           ),
