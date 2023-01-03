@@ -1,4 +1,4 @@
-# Nox App UI
+# Nox - Gamer Center
 
 <b>Nox Nedir?</b>
 <br>
