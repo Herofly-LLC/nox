@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:askingucu/core/model/haber_model.dart';
-import 'package:askingucu/core/service/auth.dart';
-import 'package:askingucu/core/utils/api.dart';
-import 'package:askingucu/ui/constant/color/colors.dart';
-import 'package:askingucu/ui/page/auth/login/sign_in.dart';
-import 'package:askingucu/ui/page/dashboard/dashboard.dart';
-import 'package:askingucu/ui/page/tools/home/tools_home.dart';
+import 'package:nox/core/model/haber_model.dart';
+import 'package:nox/core/service/auth.dart';
+import 'package:nox/core/utils/api.dart';
+import 'package:nox/ui/constant/color/colors.dart';
+import 'package:nox/ui/page/auth/login/sign_in.dart';
+import 'package:nox/ui/page/dashboard/dashboard.dart';
+import 'package:nox/ui/page/tools/home/tools_home.dart';
 
 ///muza basarsın ayağın kayar, bizi peşlersen hayatın kayar!
 

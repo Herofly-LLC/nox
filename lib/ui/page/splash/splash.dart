@@ -1,7 +1,7 @@
-import 'package:askingucu/core/service/notification.dart';
-import 'package:askingucu/ui/constant/color/colors.dart';
-import 'package:askingucu/ui/page/dashboard/dashboard.dart';
-import 'package:askingucu/ui/page/onboard/one.dart';
+import 'package:nox/core/service/notification.dart';
+import 'package:nox/ui/constant/color/colors.dart';
+import 'package:nox/ui/page/dashboard/dashboard.dart';
+import 'package:nox/ui/page/onboard/one.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';

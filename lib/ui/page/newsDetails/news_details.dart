@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:askingucu/ui/constant/color/colors.dart';
+import 'package:nox/ui/constant/color/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

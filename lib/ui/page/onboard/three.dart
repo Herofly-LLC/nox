@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:core';
 
-import 'package:askingucu/core/service/notification.dart';
-import 'package:askingucu/ui/constant/color/colors.dart';
-import 'package:askingucu/ui/page/onboard/login.dart';
+import 'package:nox/core/service/notification.dart';
+import 'package:nox/ui/constant/color/colors.dart';
+import 'package:nox/ui/page/onboard/login.dart';
 import 'package:client_information/client_information.dart';
 
 import 'package:firebase_core/firebase_core.dart';
