@@ -21,7 +21,7 @@
 # Tasarım Araçları
 
 - [x] Figma 🎨
-- [x] Kaynak: 👾💣 <a href="https://www.figma.com/community/file/1173382661463555815" target="_blank"><b>Valorant App UI - Figma Community</b>
+- [x] Kaynak: 👾💣 <a href="https://www.figma.com/community/file/1173382661463555815" target="_blank"><b>Nox App UI - Figma Community(Free)</b>
 </a>
 
 
