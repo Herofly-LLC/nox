@@ -194,6 +194,23 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.rightToLeftWithFade,
+                              child: ToolsHome()));
+                    },
+                    leading: Icon(Iconsax.code),
+                    title: Text(
+                      'Hack Araçları',
+                      style: GoogleFonts.montserrat(
+                          color: NowUIColors.trncu,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  ListTile(
                     onTap: () {},
                     leading: Icon(Iconsax.setting),
                     title: Text(

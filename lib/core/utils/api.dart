@@ -14,3 +14,10 @@ class NewsService {
         });
   }
 }
+
+class IpSorgula {
+  static Future ipSorgu() async {
+    return await http.get(Uri.parse("https://api.ipify.org/?format=json"),
+        headers: {"content": 'application/json'});
+  }
+}

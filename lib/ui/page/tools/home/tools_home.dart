@@ -49,6 +49,7 @@ bool _isLoading = false;
 bool isSwitched = false;
 final _advancedDrawerController = AdvancedDrawerController();
 var tok;
+var ipsorgu;
 
 AuthService _authService = AuthService();
 
@@ -64,6 +65,19 @@ class _ToolsHomeState extends State<ToolsHome> {
             type: PageTransitionType.rightToLeftWithFade, child: SignIn()));
   }
 
+  void getIpSorgu() async {
+    IpSorgula.ipSorgu().then((data) {
+      var resultBody = json.decode(data.body);
+      if (resultBody['success'] == true) {
+        setState(() {});
+      } else {
+        SnackBar(content: Text("Hay aksi bir sorun oluştu!"));
+      }
+      print(resultBody);
+      ipsorgu != resultBody;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -71,6 +85,7 @@ class _ToolsHomeState extends State<ToolsHome> {
       print("başarılı");
       setState(() {});
     });
+    getIpSorgu();
     _hideMenu();
     firebaseToken();
   }
@@ -264,6 +279,25 @@ class _ToolsHomeState extends State<ToolsHome> {
                             color: NowUIColors.beyaz,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        ipsorgu,
+                        style: GoogleFonts.montserrat(
+                            color: NowUIColors.beyaz,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 4,
                       ),
                     ],
                   ),
