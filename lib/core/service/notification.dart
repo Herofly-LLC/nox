@@ -77,6 +77,18 @@ class PushNotificationService {
     );
   }
 
+  disableIOSNoti() async {
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+            alert: true, badge: true, sound: true);
+  }
+
+  disableAndroidNoti() async {
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+            alert: true, badge: true, sound: true);
+  }
+
   androidNotificationChannel() => AndroidNotificationChannel(
         'high_importance_channel', // id
         'High Importance Notifications', // title

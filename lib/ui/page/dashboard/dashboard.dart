@@ -6,6 +6,8 @@ import 'package:askingucu/core/service/auth.dart';
 import 'package:askingucu/core/utils/api.dart';
 import 'package:askingucu/ui/constant/color/colors.dart';
 import 'package:askingucu/ui/page/auth/login/sign_in.dart';
+import 'package:askingucu/ui/page/newsDetails/news_details.dart';
+
 import 'package:askingucu/ui/page/tools/home/tools_home.dart';
 
 ///muza basarsın ayağın kayar, bizi peşlersen hayatın kayar!
@@ -24,6 +26,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:motion_toast/resources/arrays.dart';
 
 import 'package:page_transition/page_transition.dart';
@@ -50,6 +53,7 @@ final _advancedDrawerController = AdvancedDrawerController();
 var tok;
 
 AuthService _authService = AuthService();
+final InAppReview inAppReview = InAppReview.instance;
 
 class _DashboardState extends State<Dashboard> {
   List<HaberModel> newsList = [];
@@ -157,56 +161,57 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   ListTile(
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => ToolsHome()));
+                    onTap: () {},
+                    leading: Icon(Iconsax.triangle),
+                    title: Text(
+                      'Sistemim',
+                      style: GoogleFonts.montserrat(
+                          color: NowUIColors.trncu,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    leading: Icon(Iconsax.game),
+                    title: Text(
+                      'Oyunlar',
+                      style: GoogleFonts.montserrat(
+                          color: NowUIColors.trncu,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    leading: Icon(Iconsax.cpu),
+                    title: Text(
+                      'Donanım',
+                      style: GoogleFonts.montserrat(
+                          color: NowUIColors.trncu,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    leading: Icon(Iconsax.setting),
+                    title: Text(
+                      'Ayarlar',
+                      style: GoogleFonts.montserrat(
+                          color: NowUIColors.trncu,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () async {
+                      if (await inAppReview.isAvailable()) {
+                        inAppReview.requestReview();
+                      }
                     },
-                    leading: Icon(Iconsax.code),
-                    title: Text(
-                      'Tools',
-                      style: GoogleFonts.montserrat(
-                          color: NowUIColors.trncu,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: Icon(Iconsax.mirroring_screen),
-                    title: Text(
-                      'Channels',
-                      style: GoogleFonts.montserrat(
-                          color: NowUIColors.trncu,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: Icon(Iconsax.medal_star),
-                    title: Text(
-                      'Privacy',
-                      style: GoogleFonts.montserrat(
-                          color: NowUIColors.trncu,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: Icon(Iconsax.creative_commons),
-                    title: Text(
-                      'Terms',
-                      style: GoogleFonts.montserrat(
-                          color: NowUIColors.trncu,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () async {},
                     leading: Icon(Iconsax.lovely),
-                    title: Text('Review',
+                    title: Text('Değerlendir',
                         style: GoogleFonts.montserrat(
                             color: NowUIColors.trncu,
                             fontSize: 14,
@@ -275,7 +280,15 @@ class _DashboardState extends State<Dashboard> {
                     (_, int index) {
                       return GestureDetector(
                         //tile ontap
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HaberDetay(
+                                      url: newsList[index].url,
+                                    )),
+                          );
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -348,35 +361,29 @@ class NewsTileStyle extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsets.only(top: 68.0, left: 149, bottom: 20),
+                  padding: const EdgeInsets.only(top: 110, left: 5),
                   child: Wrap(
                     spacing: 30,
-                    children: <Widget>[],
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.all(7.0),
+                        decoration: BoxDecoration(
+                          color: NowUIColors.card,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Text(
+                          name,
+                          style: GoogleFonts.dmSans(
+                              color: NowUIColors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 4,
-          ),
-          Container(
-            padding: EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-              color: NowUIColors.statusbar,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Text(
-              name,
-              style: GoogleFonts.dmSans(
-                  color: NowUIColors.white,
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          SizedBox(
-            height: 3,
           ),
           Container(
             padding: EdgeInsets.all(12.0),
