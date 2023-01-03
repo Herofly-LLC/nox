@@ -8,6 +8,8 @@
 
 # Önizleme
 ![](https://imgyukle.com/f/2023/01/03/J2Aj96.png)
+![](https://imgyukle.com/f/2023/01/03/J2AOzx.png)
+
 
 
 # Mimari
@@ -19,7 +21,7 @@
 # Tasarım Araçları
 
 - [x] Figma 🎨
-- [x] Kaynak: 👾💣 <a href="https://www.figma.com/file/rNKHNvlyvGvECX3ekiVVXW/Valorant---Game-Guide-App-(Community)?node-id=267%3A285" target="_blank"><b>Valorant App UI - Figma Community</b>
+- [x] Kaynak: 👾💣 <a href="https://www.figma.com/community/file/1173382661463555815" target="_blank"><b>Valorant App UI - Figma Community</b>
 </a>
 
 
