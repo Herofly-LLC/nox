@@ -203,7 +203,7 @@ class _DashboardState extends State<Dashboard> {
                     },
                     leading: Icon(Iconsax.code),
                     title: Text(
-                      'Hack Araçları',
+                      'Hacking',
                       style: GoogleFonts.montserrat(
                           color: NowUIColors.trncu,
                           fontSize: 14,
