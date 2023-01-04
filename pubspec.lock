@@ -611,6 +611,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.6.5"
+  get_ip_address:
+    dependency: "direct main"
+    description:
+      name: get_ip_address
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5"
   get_version:
     dependency: "direct main"
     description:

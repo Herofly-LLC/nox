@@ -26,6 +26,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:motion_toast/resources/arrays.dart';
+import 'package:nox/ui/page/tools/smsBomber/bomber.dart';
 
 import 'package:page_transition/page_transition.dart';
 
@@ -346,7 +347,14 @@ class _ToolsHomeState extends State<ToolsHome> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: new InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType
+                                          .rightToLeftWithFade,
+                                      child: Bomber()));
+                            },
                             child: Container(
                               height: 180,
                               width: 170,
@@ -373,6 +381,121 @@ class _ToolsHomeState extends State<ToolsHome> {
                                       children: <Widget>[
                                         Text(
                                           "SMS Bomber 💣",
+                                          style: GoogleFonts.montserrat(
+                                              color: NowUIColors.beyaz,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: new InkWell(
+                            onTap: () {},
+                            child: Container(
+                              height: 180,
+                              width: 170,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: NowUIColors.bgcolor,
+                                image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      NowUIColors.bgcolor.withOpacity(0.3),
+                                      BlendMode.dstOut),
+                                  image: NetworkImage(
+                                      "https://images.unsplash.com/photo-1529465230221-a0d10e46fcbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"),
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.topCenter,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 140.0, left: 10, bottom: 20),
+                                child: Wrap(
+                                  spacing: 40,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          "Phishing 🎣",
+                                          style: GoogleFonts.montserrat(
+                                              color: NowUIColors.beyaz,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: new InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType
+                                          .rightToLeftWithFade,
+                                      child: Bomber()));
+                            },
+                            child: Container(
+                              height: 180,
+                              width: 170,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: NowUIColors.bgcolor,
+                                image: DecorationImage(
+                                  colorFilter: new ColorFilter.mode(
+                                      NowUIColors.bgcolor.withOpacity(0.3),
+                                      BlendMode.dstOut),
+                                  image: NetworkImage(
+                                      "https://www.imperva.com/learn/wp-content/uploads/sites/13/2022/04/Screen-Shot-2022-04-03-at-14.41.09.png"),
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.topCenter,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 140.0, left: 10, bottom: 20),
+                                child: Wrap(
+                                  spacing: 40,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          "Metasploit 🛡️",
                                           style: GoogleFonts.montserrat(
                                               color: NowUIColors.beyaz,
                                               fontSize: 18,
