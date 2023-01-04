@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:iconsax/iconsax.dart';
+import 'package:nox/ui/constant/color/colors.dart';
+import 'package:nox/ui/page/tools/home/tools_home.dart';
+import 'package:page_transition/page_transition.dart';
 
 final String bomburl =
     "https://www.airtel.in/referral-api/core/notify?messageId=map&rtn=";
@@ -47,6 +51,36 @@ class _BomberState extends State<Bomber> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        titleSpacing: 10.0,
+        backgroundColor: NowUIColors.bgcolor,
+        leading: new IconButton(
+          icon: new Icon(Iconsax.menu_1, color: NowUIColors.beyaz),
+          onPressed: () {
+            Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeftWithFade,
+                    child: ToolsHome()));
+          },
+        ),
+        toolbarHeight: 60.5,
+        toolbarOpacity: 0.7,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(35),
+              bottomLeft: Radius.circular(35)),
+        ),
+        centerTitle: true,
+        title: Image.asset(
+          "assets/img/logo.png",
+          height: 40,
+          width: 40,
+        ),
+        actions: <Widget>[],
+      ),
+      backgroundColor: NowUIColors.bgcolor,
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -54,21 +88,12 @@ class _BomberState extends State<Bomber> {
             width: MediaQuery.of(context).size.width - 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                gradient:
-                    LinearGradient(colors: [Colors.orange, Colors.deepOrange])),
+                gradient: LinearGradient(
+                    colors: [NowUIColors.bgcolor, NowUIColors.bgcolor])),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  Center(
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 40,
-                      child: FlutterLogo(
-                        size: 50,
-                      ),
-                    ),
-                  ),
                   Padding(
                       padding: const EdgeInsets.all(20),
                       child: TextField(
@@ -76,12 +101,12 @@ class _BomberState extends State<Bomber> {
                           mo_nu = int.parse(v);
                         },
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w300),
+                            color: Colors.white, fontWeight: FontWeight.w300),
                         keyboardType: TextInputType.numberWithOptions(),
                         decoration: InputDecoration(
                           labelStyle: TextStyle(color: Colors.white),
                           prefixIcon: Icon(Icons.phone),
-                          labelText: "Enter Number",
+                          labelText: "Numara:",
                         ),
                       )),
                   Padding(
@@ -91,12 +116,12 @@ class _BomberState extends State<Bomber> {
                           count = int.parse(v);
                         },
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w300),
+                            color: Colors.white, fontWeight: FontWeight.w300),
                         keyboardType: TextInputType.numberWithOptions(),
                         decoration: InputDecoration(
                           labelStyle: TextStyle(color: Colors.white),
                           prefixIcon: Icon(Icons.sms),
-                          labelText: "SMS Count",
+                          labelText: "Toplam Gönderilecek SMS:",
                         ),
                       )),
                   sms_sent == 0
@@ -141,7 +166,7 @@ class _BomberState extends State<Bomber> {
                                   'Gönder',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 30,
+                                    fontSize: 22,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
