@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nox/core/model/haber_model.dart';
 import 'package:nox/core/service/auth.dart';
 import 'package:nox/core/utils/api.dart';
@@ -58,6 +59,15 @@ final InAppReview inAppReview = InAppReview.instance;
 class _DashboardState extends State<Dashboard> {
   List<HaberModel> newsList = [];
 
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  void kullaniciVeri() {
+    final User? user = auth.currentUser;
+    final uid = user!.uid;
+
+    print('Kullanıcı UID= ' + uid);
+  }
+
   void getTech(tag) async {
     NewsService.getTech(tag).then((data) {
       Map resultBody = json.decode(data.body);
@@ -92,7 +102,7 @@ class _DashboardState extends State<Dashboard> {
       setState(() {});
     });
     _hideMenu();
-
+    kullaniciVeri();
     firebaseToken();
     getTech(tag);
   }
