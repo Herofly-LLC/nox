@@ -56,13 +56,13 @@ class _BomberState extends State<Bomber> {
         titleSpacing: 10.0,
         backgroundColor: NowUIColors.bgcolor,
         leading: new IconButton(
-          icon: new Icon(Iconsax.menu_1, color: NowUIColors.beyaz),
+          icon: new Icon(
+            Icons.arrow_back_ios,
+            color: NowUIColors.beyaz,
+          ),
           onPressed: () {
             Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeftWithFade,
-                    child: ToolsHome()));
+                context, MaterialPageRoute(builder: (context) => ToolsHome()));
           },
         ),
         toolbarHeight: 60.5,

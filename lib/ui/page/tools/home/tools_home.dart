@@ -532,7 +532,7 @@ class _ToolsHomeState extends State<ToolsHome> {
                                       NowUIColors.bgcolor.withOpacity(0.3),
                                       BlendMode.dstOut),
                                   image: NetworkImage(
-                                      "https://images.unsplash.com/photo-1529465230221-a0d10e46fcbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"),
+                                      "https://images.idgesg.net/images/article/2019/03/hack-your-own-wi-fi_neon-wi-fi_keyboard_hacker-100791531-large.jpg?auto=webp&quality=85,70"),
                                   fit: BoxFit.cover,
                                   alignment: Alignment.topCenter,
                                 ),
@@ -546,7 +546,7 @@ class _ToolsHomeState extends State<ToolsHome> {
                                     Row(
                                       children: <Widget>[
                                         Text(
-                                          "Phishing 🎣",
+                                          'Wi-Fi Crack 🔓',
                                           style: GoogleFonts.montserrat(
                                               color: NowUIColors.beyaz,
                                               fontSize: 18,
