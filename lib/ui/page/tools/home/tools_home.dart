@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:intl/number_symbols_data.dart';
 import 'package:nox/core/model/haber_model.dart';
 import 'package:nox/core/service/auth.dart';
+import 'package:nox/core/service/remote_config.dart';
+import 'package:nox/core/service/remote_config_keys.dart';
 import 'package:nox/core/utils/api.dart';
 import 'package:nox/ui/constant/color/colors.dart';
 import 'package:nox/ui/page/auth/login/sign_in.dart';
@@ -45,6 +49,7 @@ class ToolsHome extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+final remoteConfig = FirebaseRemoteConfigService();
 
 bool _isLoading = false;
 bool isSwitched = false;
@@ -65,6 +70,19 @@ class _ToolsHomeState extends State<ToolsHome> {
         context,
         PageTransition(
             type: PageTransitionType.rightToLeftWithFade, child: SignIn()));
+  }
+
+  void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp().whenComplete(() {
+      print("başarılı");
+      setState(() {});
+    });
+    await FirebaseRemoteConfigService().initialize();
+  }
+
+  void fetchIslem() async {
+    await remoteConfig.fetchAndActivate();
   }
 
   void getIpSorgu() async {
@@ -88,10 +106,8 @@ class _ToolsHomeState extends State<ToolsHome> {
   @override
   void initState() {
     super.initState();
-    Firebase.initializeApp().whenComplete(() {
-      print("başarılı");
-      setState(() {});
-    });
+    main();
+    fetchIslem();
     getIpSorgu();
     _hideMenu();
     firebaseToken();
@@ -107,6 +123,7 @@ class _ToolsHomeState extends State<ToolsHome> {
 
   @override
   Widget build(BuildContext context) {
+    final remoteConfig = FirebaseRemoteConfigService();
     if (!isLoading) {
       return Center(child: CircularProgressIndicator());
     } else {
@@ -320,8 +337,8 @@ class _ToolsHomeState extends State<ToolsHome> {
                       height: 7,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
                         Text(
                           ipsorgu.toString(),
@@ -337,6 +354,24 @@ class _ToolsHomeState extends State<ToolsHome> {
                     ),
                     SizedBox(
                       height: 7,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          remoteConfig.getString(
+                              FirebaseRemoteConfigKeys.welcomeMessage),
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                              color: NowUIColors.sari,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                      ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -405,7 +440,7 @@ class _ToolsHomeState extends State<ToolsHome> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: new InkWell(
-                            onTap: () {},
+                            onTap: () async {},
                             child: Container(
                               height: 180,
                               width: 170,
