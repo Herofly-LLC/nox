@@ -7,8 +7,8 @@
 
 
 # Önizleme
-![](https://imgyukle.com/f/2023/01/03/J2djoS.png)
-![](https://imgyukle.com/f/2023/01/03/J2dN3G.png)
+![](https://i.hizliresim.com/aai7nsu.png)
+![](https://i.hizliresim.com/n6pkiqv.png)
 
 
 
