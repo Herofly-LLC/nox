@@ -356,24 +356,6 @@ class _ToolsHomeState extends State<ToolsHome> {
                       height: 7,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          remoteConfig.getString(
-                              FirebaseRemoteConfigKeys.welcomeMessage),
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.montserrat(
-                              color: NowUIColors.sari,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                      ],
-                    ),
-                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
