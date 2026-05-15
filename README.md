@@ -1,7 +1,7 @@
 # Nox - Gamer Center
 
 <br>
-👾💣 Nox, It is an application where everyone who wants to play games will be able to play their own system features, which games can play more and be aware of all technology developments. (will be updated over time)
+💣 Nox, It is an application where everyone who wants to play games will be able to play their own system features, which games can play more and be aware of all technology developments. (will be updated over time)
 
 
 # Review
